@@ -1,0 +1,40 @@
+# Project: Projeto1
+# Compiler: Default GCC compiler
+# Compiler Type: MingW 3
+# Makefile created by wxDev-C++ 7.3 on 26/02/11 15:30
+
+WXLIBNAME = wxmsw28
+CPP       = g++.exe
+CC        = gcc.exe
+WINDRES   = "windres.exe"
+OBJ       = MingW/main.o MingW/mapa_xml.o MingW/Projeto1_private.res
+LINKOBJ   = "MingW/main.o" "MingW/mapa_xml.o" MingW/Projeto1_private.res
+LIBS      = -L"C:/Arquivos de programas/Dev-Cpp/Lib" -lalleg -lmingw32 -llibxml2 -lz  
+INCS      = -I"C:/Arquivos de programas/Dev-Cpp/Include"
+CXXINCS   = -I"C:/Arquivos de programas/Dev-Cpp/lib/gcc/mingw32/3.4.5/include" -I"C:/Arquivos de programas/Dev-Cpp/include/c++/3.4.5/backward" -I"C:/Arquivos de programas/Dev-Cpp/include/c++/3.4.5/mingw32" -I"C:/Arquivos de programas/Dev-Cpp/include/c++/3.4.5" -I"C:/Arquivos de programas/Dev-Cpp/include" -I"C:/Arquivos de programas/Dev-Cpp/" -I"C:/Arquivos de programas/Dev-Cpp/include/3rdparty/wx/plotctrl" -I"C:/Arquivos de programas/Dev-Cpp/include/3rdparty/wx/sheet" -I"C:/Arquivos de programas/Dev-Cpp/include/3rdparty/wx/treemultictrl" -I"C:/Arquivos de programas/Dev-Cpp/include/3rdparty/wx/things" -I"C:/Arquivos de programas/Dev-Cpp/include/3rdparty/wx" -I"C:/Arquivos de programas/Dev-Cpp/include/3rdparty" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/msw" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/generic" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/fl" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/gizmos" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/html" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/mmedia" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/net" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/ogl" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/plot" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/protocol" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/stc" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/svg" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/xml" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx/xrc" -I"C:/Arquivos de programas/Dev-Cpp/include/common/wx" -I"C:/Arquivos de programas/Dev-Cpp/include/common"
+RCINCS    = --include-dir "C:/ARQUIV~1/Dev-Cpp/include/common"
+BIN       = MingW/Projeto1.exe
+DEFINES   = 
+CXXFLAGS  = $(CXXINCS) $(DEFINES)  
+CFLAGS    = $(INCS) $(DEFINES)  
+GPROF     = gprof.exe
+RM        = rm -f
+LINK      = g++.exe
+
+.PHONY: all all-before all-after clean clean-custom
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	$(RM) $(LINKOBJ) "$(BIN)"
+
+$(BIN): $(OBJ)
+	$(LINK) $(LINKOBJ) -o "$(BIN)" $(LIBS) 
+
+MingW/main.o: $(GLOBALDEPS) main.cpp mapa_xml.h
+	$(CPP) -c main.cpp -o MingW/main.o $(CXXFLAGS)
+
+MingW/mapa_xml.o: $(GLOBALDEPS) mapa_xml.cpp mapa_xml.h
+	$(CPP) -c mapa_xml.cpp -o MingW/mapa_xml.o $(CXXFLAGS)
+
+MingW/Projeto1_private.res: MingW/Projeto1_private.rc 
+	$(WINDRES) --input-format=rc -o MingW/Projeto1_private.res $(RCINCS) MingW/PROJET~1.RC -O coff

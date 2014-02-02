@@ -1,0 +1,50 @@
+/* direcoes dos sprites */
+#define DIRECAO_DIREITA             0
+#define DIRECAO_ESQUERDA            1
+#define DIRECAO_CIMA                2
+#define DIRECAO_BAIXO               3
+
+typedef struct SPRITE
+{
+	int x,y,x_ant,y_ant,id,contador;
+   short familia,estado,quadro_atual,delay;
+   char direcao;
+
+   /* flags de colisao */
+   char colisao[4];
+
+   /* estado da maquina de estados */
+   short fsm;
+
+} SPRITE;
+
+
+/* calcula a direcao da colisao */
+void calcula_direcao(int i,int j,int i1,int j1,int i2,int j2,SPRITE *_sprite)
+{
+   int dx,dy;
+
+   dx = _sprite->x - _sprite->x_ant;
+   dy = _sprite->y - _sprite->y_ant;
+
+   if (dy > 0 && j > j1) _sprite->colisao[DIRECAO_BAIXO] = TRUE;
+   if (dy < 0 && j < j2) _sprite->colisao[DIRECAO_CIMA] = TRUE;
+   if (dx > 0 && i > i1) _sprite->colisao[DIRECAO_DIREITA] = TRUE;
+   if (dx < 0 && i < i2) _sprite->colisao[DIRECAO_ESQUERDA] = TRUE;
+}
+
+
+
+
+#define colide(x1,y1,w1,h1,x2,y2,w2,h2) (\
+x1+w1-1 >= x2 &&\
+x1 <= x2+w2-1 &&\
+y1+h1-1 >= y2 &&\
+y1 <= y2+h2-1)
+
+#define CALCULA_LIMITES {\
+   i1 = sprite[l].x / TILE_SIZE;\
+   j1 = sprite[l].y / TILE_SIZE;\
+   i2 = (sprite[l].x + imagem[sprite[l].quadro_atual]->w - 1) / TILE_SIZE;\
+   j2 = (sprite[l].y + imagem[sprite[l].quadro_atual]->h - 1) / TILE_SIZE;\
+}
